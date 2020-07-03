@@ -1,0 +1,6 @@
+{
+	"botPrefix": "!",
+	"botToken": "BOT-TOKEN",
+	"messageTimeout": 6,
+	"queueCategory": "QUEUE-CATEGORY-ID"
+}
