@@ -18,7 +18,7 @@ module.exports = class extends Command {
 		}) : msg.channel;
 
 		if (!queueChannel) throw 'queueChannel undefined';
-		if (isQueueChannelManaged()) await queueChannel.updateOverwrite(msg.author, { 'VIEW_CHANNEL': true });
+		if (isQueueChannelManaged(this.client, queueChannel)) await queueChannel.updateOverwrite(msg.author, { 'VIEW_CHANNEL': true });
 
 		queue = {
 			cap,
