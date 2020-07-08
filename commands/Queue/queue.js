@@ -1,5 +1,5 @@
 const { Command } = require('klasa');
-const { getQueue, getQueueCategory, saveQueue } = require('../../utils/queue');
+const { getQueue, getQueueCategory, isQueueChannelManaged, saveQueue } = require('../../utils/queue');
 
 module.exports = class extends Command {
 
@@ -18,7 +18,7 @@ module.exports = class extends Command {
 		}) : msg.channel;
 
 		if (!queueChannel) throw 'queueChannel undefined';
-		await queueChannel.updateOverwrite(msg.author, { 'VIEW_CHANNEL': true });
+		if (isQueueChannelManaged()) await queueChannel.updateOverwrite(msg.author, { 'VIEW_CHANNEL': true });
 
 		queue = {
 			cap,
