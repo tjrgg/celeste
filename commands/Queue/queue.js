@@ -15,14 +15,14 @@ module.exports = class extends Command {
 		const queueCategory = channel ? await getQueueCategory(this.client) : undefined;
 		const queueChannel = queueCategory ? await msg.guild.channels.create(msg.language.get('QUEUE_CHANNEL_NAME', name), { parent: queueCategory, permissionOverwrites: queueCategory.permissionOverwrites }).catch(() => {
 			return msg.sendError(msg.language.get('QUEUE_CHANNEL_ERROR', name));
-		}) : undefined;
+		}) : msg.channel;
 
-		if (!queueChannel) return;
+		if (!queueChannel) throw 'queueChannel undefined';
 		await queueChannel.updateOverwrite(msg.author, { 'VIEW_CHANNEL': true });
 
 		queue = {
 			cap,
-			channel: queueChannel ? queueChannel.id : msg.channel.id,
+			channel: queueChannel,
 			members: [ msg.author.id ],
 			message: null,
 			name,
