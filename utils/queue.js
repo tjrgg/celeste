@@ -1,6 +1,8 @@
+const { writeQueues } = require('./persistence');
+
 async function delQueue(client, queue) {
 	await delQueueChannel(client, queue);
-	return client.queues.delete(queue.name);
+	delete client.queues[queue.name];
 }
 
 async function delQueueChannel(client, queue) {
@@ -13,7 +15,7 @@ function getQueues(client) {
 }
 
 function getQueue(client, queueName) {
-	return client.queues.get(queueName);
+	return client.queues[queueName];
 }
 
 async function getQueueCategory(client) {
@@ -34,7 +36,8 @@ function isQueueChannelManaged(client, queueChannel) {
 }
 
 function saveQueue(client, queue) {
-	return client.queues.set(queue.name, queue);
+	client.queues[queue.name] = queue;
+	writeQueues(client.queues);
 }
 
 module.exports = { delQueue, delQueueChannel, getQueues, getQueue, getQueueCategory, getQueueChannel, isQueueChannelManaged, saveQueue };

@@ -1,3 +1,4 @@
 bwd
 config/config.json
+config/queues.json
 node_modules

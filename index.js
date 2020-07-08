@@ -1,4 +1,5 @@
 const config = require('./config/config.json');
+const { readQueues } = require('./utils/persistence');
 
 const { Client } = require('klasa');
 
@@ -10,6 +11,6 @@ const bot = new Client({
 });
 
 bot.config = config;
-bot.queues = new Map();
+bot.queues = readQueues() || {};
 
 bot.login(config.botToken);
