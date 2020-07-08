@@ -43,7 +43,7 @@
 1. Clone this repository to your computer or server.
 2. In the cloned repository, run `npm install` or `yarn install` to install the dependencies.
 3. Copy `config/config.example.json` to `config/config.json` and adjust it as needed.
-4. Run `npm index` or `yarn start` to start the bot.
+4. Run `npm start` or `yarn start` to start the bot.
 
 
 ## Contributors
