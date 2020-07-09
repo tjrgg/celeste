@@ -11,7 +11,7 @@ async function delQueueChannel(client, queue) {
 }
 
 function getQueues(client) {
-	return client.queues.keys();
+	return Object.keys(client.queues);
 }
 
 function getQueue(client, queueName) {
