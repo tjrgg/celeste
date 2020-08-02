@@ -28,7 +28,7 @@ module.exports = class extends Language {
 			QUEUE_LIST_EMPTY: 'No open queues.',
 			QUEUE_LIST_ITEM: (queue) => `${queue.name} - Cap: ${queue.cap}, Members: ${queue.members.length}, Status: ${queue.paused ? 'Paused' : 'Open'}`,
 			QUEUE_LIST_TITLE: 'Queue List',
-			QUEUE_MEMBERS: (queue, members) => queue.members.length > 0 ? `${queue.members.map(m => `- ${members.cache.get(m).toString()}`).join('\n')}` : 'No members in the queue.',
+			QUEUE_MEMBERS: (queue, members) => queue.members.length > 0 ? `${queue.members.map(m => `- ${members.cache.get(m)}`).join('\n')}` : 'No members in the queue.',
 			QUEUE_NOT_FOUND: (queueName) => `There is no queue named ${queueName}.`,
 			QUEUE_REMOVE_NOT_MEMBER: (queueName, member) => `${member} is not a member of the queue ${queueName}.`,
 			QUEUE_REMOVED: (queueName, member) => `Member ${member} removed from queue ${queueName}.`,

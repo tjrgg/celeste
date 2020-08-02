@@ -1,6 +1,6 @@
 const { Extendable } = require('klasa');
 const { Message, MessageEmbed, TextChannel } = require('discord.js');
-const { getQueueChannel } = require('../utils/queue');
+const { checkQueueMembers, getQueueChannel } = require('../utils/queue');
 
 module.exports = class extends Extendable {
 
@@ -17,6 +17,8 @@ module.exports = class extends Extendable {
 	}
 
 	async sendQueue(queue) {
+		await checkQueueMembers(this.client, queue, this.guild.members);
+
 		const channel = await getQueueChannel(this.client, queue).catch(() => undefined);
 		if (!channel) return;
 

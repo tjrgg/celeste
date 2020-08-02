@@ -1,5 +1,16 @@
 const { writeQueues } = require('./persistence');
 
+async function checkQueueMembers(client, queue, members) {
+	const queueMembers = queue.members;
+	let queueMembersRemoved = 0;
+	for (const member of queueMembers) {
+		if (!members.cache.has(member)) queue.members.splice(queue.members.indexOf(member), 1);
+		queueMembersRemoved++;
+	}
+	await saveQueue(client, queue);
+	return queueMembersRemoved;
+}
+
 async function delQueue(client, queue) {
 	await delQueueChannel(client, queue);
 	delete client.queues[queue.name];
@@ -40,4 +51,4 @@ function saveQueue(client, queue) {
 	writeQueues(client.queues);
 }
 
-module.exports = { delQueue, delQueueChannel, getQueues, getQueue, getQueueCategory, getQueueChannel, isQueueChannelManaged, saveQueue };
+module.exports = { checkQueueMembers, delQueue, delQueueChannel, getQueues, getQueue, getQueueCategory, getQueueChannel, isQueueChannelManaged, saveQueue };
