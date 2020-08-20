@@ -14,7 +14,6 @@ module.exports = class extends Command {
 
 		queue.ended = true;
 
-		await msg.sendQueue(queue);
 		await delQueue(this.client, queue);
 		(await msg.send(msg.language.get('QUEUE_ENDED', name))).delete({ timeout: 1000*this.client.config.messageTimeout });
 	}

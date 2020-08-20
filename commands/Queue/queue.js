@@ -23,7 +23,7 @@ module.exports = class extends Command {
 		queue = {
 			cap,
 			channel: queueChannel.id,
-			members: [ msg.author.id ],
+			members: [],
 			message: null,
 			name,
 			paused: false
